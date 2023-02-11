@@ -1,0 +1,4 @@
+#labelAnchor {
+    -fx-background-image: url("invis.png");
+    -fx-background-size: cover;
+}

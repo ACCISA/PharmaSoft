@@ -1,0 +1,35 @@
+#manuelButton{
+     -fx-background-color: transparent;
+     -fx-border-color: black;
+     -fx-background-opacity: 0.3;
+}
+#facialButton{
+      -fx-border-color: black;
+      -fx-background-color: transparent;
+      -fx-background-opacity: 0.3;
+}
+
+.optionClass{
+    -fx-border-color: black;
+    -fx-background-color: transparent;
+    -fx-background-opacity: 0.3;
+}
+
+#facialButton: hover{
+      -fx-background-color: grey;
+      -fx-text-fill: rgba(0, 0, 0, 0.5);
+ }
+#manualButton: hover{
+     -fx-background-color: grey;
+     -fx-text-fill: rgba(0, 0, 0, 0.5);
+ }
+#promptUser{
+ -fx-background-color: #1c8c64;
+    -fx-background-fill: #1c8c64;
+
+}
+#letUsChoose:hover{
+    -fx-background-color: transparent;
+    -fx-text-fill: rgba(0, 0, 0, 0.5);
+    -fx-underline:true;
+}

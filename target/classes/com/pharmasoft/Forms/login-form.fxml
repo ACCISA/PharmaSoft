@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="300.0" style="-fx-background-color: #181823; -fx-border-radius: 15px; -fx-border-color: #537FE7; -fx-background-radius: 15px;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXTextField layoutX="70.0" layoutY="115.0" prefHeight="48.0" prefWidth="173.0" promptText="Username" style="-fx-background-color: #C0EEF2; -fx-alignment: center;">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </JFXTextField>
+      <JFXPasswordField layoutX="70.0" layoutY="221.0" prefHeight="48.0" prefWidth="173.0" promptText="Password" style="-fx-background-color: #C0EEF2; -fx-alignment: center;">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </JFXPasswordField>
+      <Text fill="#c0eef2" layoutX="65.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PharmaSoft" wrappingWidth="183.771484375">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Text>
+      <Text fill="#c0eef2" layoutX="125.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="63.771484375">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

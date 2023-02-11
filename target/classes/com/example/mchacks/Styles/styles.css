@@ -1,0 +1,22 @@
+#closeBtn:hover {
+   -fx-background-color: red;
+   -fx-background-radius: 15px;
+}
+
+#backgroundPane {
+    -fx-background-image: url("background.png");
+    -fx-background-size: cover;
+}
+
+#navBarPane {
+    -fx-background-image: url("navbar.png");
+    -fx-background-size: cover;
+}
+#letUsChoose{
+    -fx-font-weight: bold;
+}
+#letUsChoose:hover{
+    -fx-background-color: transparent;
+    -fx-text-fill: rgba(0, 0, 0, 0.5);
+    -fx-underline:true;
+}
