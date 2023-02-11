@@ -4,7 +4,7 @@ from Database import Initialize
 import jwt
 import datetime
 import uuid
-import Employee
+from Employee import Employee
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecretkey'
 
@@ -16,9 +16,9 @@ def check_for_token(func):
             return jsonify({'message':'token_missing'}), 403
 
         try:
-            data = jwt.decode(token, app.config['SECRET_KEY'])
+            data = jwt.decode(token, app.config['SECRET_KEY'],algorithms=['HS256'])
         except:
-            return jsonify({'message':'invalid_token','to':token}), 403
+            return jsonify({'message':'invalid_token','token_recieved':token}), 403
         return func(*args,**kwargs)
     return wrapped
         
@@ -57,9 +57,10 @@ def login():
     data = request.get_json()
     password = data['password']
     employee_id = data['employee_id']
+    print(password, employee_id)
     if password == None or employee_id == None:
-        return jsonify({'message':'information_missing'})
-    if Employee.verifyLogin():
+        return jsonify({'message':'information_missing','token':'none'})
+    if Employee.verifyLogin(employee_id,password):
         token = jwt.encode({
             'user':str(employee_id),
             'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=60)

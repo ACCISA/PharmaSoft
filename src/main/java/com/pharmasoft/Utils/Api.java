@@ -1,18 +1,74 @@
 package com.pharmasoft.Utils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.io.*;
+import java.net.*;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import com.pharmasoft.Entities.Session;
 import org.json.JSONObject;
 
 
 public class Api {
+    public boolean verifyLogin(String employee_id, String password) throws IOException {
+        String byteData ="{\"employee_id\":\""+employee_id+"\",\"password\":\""+ password+"\"}";
+        byte[] out = byteData.getBytes(StandardCharsets.UTF_8);
+        if (APICall("http://127.0.0.1:5000/login", out, true)) return true;
+        return false;
 
+    }
+    private boolean APICall(String urls, byte[] out,boolean login) throws IOException {
+        URL url = new URL(urls);
+        URLConnection con = url.openConnection();
+        HttpURLConnection http = (HttpURLConnection) con;
+        http.setRequestMethod("POST");
+        http.setDoOutput(true);
+        int length = out.length;
+
+        http.setFixedLengthStreamingMode(length);
+        http.setRequestProperty("Content-Type","application/json; charset=UTF-8");
+
+        http.connect();
+        try(OutputStream os = http.getOutputStream()){
+            os.write(out);
+        }
+
+
+        try(InputStream is = http.getInputStream()){
+            BufferedReader in = new BufferedReader( new InputStreamReader(is));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            //print in String
+            System.out.println(response.toString());
+            //Read JSON response and print
+            JSONObject myResponse = new JSONObject(response.toString());
+            if (login){
+                String message = myResponse.getString("message");
+                String token = myResponse.getString("token");
+                if (token.equals("none") && message.equals("information_missing")){
+                    System.out.println("[App] Information Missing, login failed");
+                    return false;
+                }
+                if (token.equals("none") && message.equals("invalid_login")){
+                    System.out.println("[App] Invalid Credentials, login failed");
+                    return false;
+                }
+                if ( !(token.equals("none")) && message.equals("logged_in")){
+                    System.out.println("[App] User Logged in");
+                    Session loggedin = new Session(token);
+                    Session.cur_session = loggedin;
+                    return true;
+                }
+                return false;
+            }
+        }
+        return false;
+    }
     private String[] APICall(String apiLocation, String method, String[] args){
         String urlx = "http://127.0.0.1:5000/"+apiLocation;
 

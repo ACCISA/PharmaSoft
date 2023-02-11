@@ -21,13 +21,14 @@ class Employee:
         c.execute(sql, val)
         result = c.fetchone()
         if result == None:
-            print('[API] Log in failed for employee_id = ' + str(employee_id))
+            print('[API] Log in failed for employee_id = ' + str(employee_id) + '; Employee does not exists')
             return False
-        if not result[0] == password:
+        if not result[0] == hashlib.sha256(password.encode()).hexdigest():
+            print('[API] Log in failed for employee_id = ' + str(employee_id))
             return False
         print('[API] Log in successful for employee_id = ' + str(employee_id))
         return True
-        
+
     def verifyEmployeeID(self):
         #check if the employee id doesnt already exist
         sql = "SELECT entry_id FROM EMPLOYEE WHERE employee_id =?"
