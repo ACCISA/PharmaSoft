@@ -2,6 +2,7 @@ package com.pharmasoft.Controllers.Forms;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.pharmasoft.Utils.Api;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,6 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -29,7 +31,7 @@ public class LoginForm implements Initializable {
             @Override
             public void handle(KeyEvent keyEvent) {
                 if (keyEvent.getCode().equals(KeyCode.ENTER)){
-                    System.out.println("asd");
+                    loginAttempt();
                 }
             }
         });
@@ -37,9 +39,19 @@ public class LoginForm implements Initializable {
             @Override
             public void handle(KeyEvent keyEvent) {
                 if (keyEvent.getCode().equals(KeyCode.ENTER)){
-                    System.out.println("asds");
+                    loginAttempt();
                 }
             }
         });
     }
+
+    public void loginAttempt()  {
+        Api login_attempt = new Api();
+        try {
+            login_attempt.verifyLogin(username_field.getText(),password_field.getText());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
