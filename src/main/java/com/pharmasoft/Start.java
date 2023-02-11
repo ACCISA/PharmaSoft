@@ -18,7 +18,7 @@ public class Start extends Application {
 //        stage.setTitle("Hello!");
 //        stage.setScene(scene);
 //        stage.show();
-        Window start = new Window("src/main/resources/com/pharmasoft/Forms/login-form.fxml");
+        Window start = new Window("src/main/resources/com/pharmasoft/Forms/login-form.fxml", false);
         start.Open();
     }
 

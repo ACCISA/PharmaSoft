@@ -30,6 +30,7 @@ public class Window {
     private double x = 0;
     private double y = 0;
     private Stage stage;
+    private boolean isDraggable;
     private ArrayList<Stage> allStage;
     private String style = "src/main/resources/com/pharmasoft/Styles/styles.css";
 
@@ -41,8 +42,9 @@ public class Window {
         CreateWindow();
     }
 
-    public Window(String fxml){
+    public Window(String fxml,boolean isDraggable){
         this.fxml = fxml;
+        this.isDraggable = isDraggable;
         CreateWindow();
     }
 
@@ -87,15 +89,17 @@ public class Window {
             Scene scene = new Scene(root,width,height);
             scene.setFill(Color.TRANSPARENT);
 
-            scene.setOnMousePressed(mouseEvent -> {
-                x = mouseEvent.getSceneX();
-                y = mouseEvent.getSceneY();
-            });
+            if (isDraggable){
+                scene.setOnMousePressed(mouseEvent -> {
+                    x = mouseEvent.getSceneX();
+                    y = mouseEvent.getSceneY();
+                });
 
-            scene.setOnMouseDragged(mouseEvent -> {
-                stage.setX(mouseEvent.getScreenX() - x);
-                stage.setY(mouseEvent.getScreenY() - y);
-            });
+                scene.setOnMouseDragged(mouseEvent -> {
+                    stage.setX(mouseEvent.getScreenX() - x);
+                    stage.setY(mouseEvent.getScreenY() - y);
+                });
+            }
             stage.setTitle(title);
             stage.setScene(scene);
 
