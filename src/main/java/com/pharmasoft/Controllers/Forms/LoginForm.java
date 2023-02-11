@@ -27,6 +27,12 @@ public class LoginForm extends BaseController implements Initializable {
     @FXML
     private JFXPasswordField password_field;
 
+    @FXML
+    private AnchorPane loginFormPane;
+
+    @FXML
+    private AnchorPane userMenu;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         username_field.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -52,9 +58,11 @@ public class LoginForm extends BaseController implements Initializable {
         try {
             boolean attempt = login_attempt.verifyLogin(username_field.getText(),password_field.getText());
             if (attempt){
-                Window menu = new Window("src/main/resources/com/pharmasoft/Menus/user-menu.fxml",false,true);
-                menu.Open();
-                username_field.getScene().getWindow().hide();
+//                Window menu = new Window("src/main/resources/com/pharmasoft/Menus/user-menu.fxml",false,true);
+//                menu.Open();
+//                username_field.getScene().getWindow().hide();
+                loginFormPane.setVisible(false);
+                userMenu.setVisible(true);
 
             }
         } catch (IOException e) {

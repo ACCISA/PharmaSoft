@@ -2,3 +2,10 @@
     -fx-background-image: url("Images/background_pane2.jpg");
     -fx-background-size: cover;
 }
+
+.backgroundMenu{
+    -fx-background-color:  #181823;
+    -fx-border-color:  #8c0388;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+}
