@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,5 +24,6 @@
             <Font name="System Bold" size="33.0" />
          </font>
       </Text>
+      <JFXButton fx:id="closeBtn" layoutX="262.0" layoutY="14.0" onAction="#closeBtnAction" style="-fx-background-color: #C0EEF2;" text="X" />
    </children>
 </AnchorPane>

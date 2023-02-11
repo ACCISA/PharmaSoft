@@ -15,8 +15,9 @@ import javafx.stage.Screen;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.pharmasoft.Controllers.BaseController;
 
-public class LoginForm implements Initializable {
+public class LoginForm extends BaseController implements Initializable {
 
 
     @FXML

@@ -13,6 +13,8 @@ module com.pharmasoft {
     opens com.pharmasoft.Controllers.Forms to javafx.fxml;
 
     exports com.pharmasoft;
+    exports com.pharmasoft.Controllers;
+    opens com.pharmasoft.Controllers to javafx.fxml;
 
 
 }
