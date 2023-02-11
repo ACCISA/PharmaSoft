@@ -2,6 +2,7 @@ package com.pharmasoft.Controllers.Forms;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import com.pharmasoft.Entities.Window;
 import com.pharmasoft.Utils.Api;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -49,7 +50,13 @@ public class LoginForm extends BaseController implements Initializable {
     public void loginAttempt()  {
         Api login_attempt = new Api();
         try {
-            login_attempt.verifyLogin(username_field.getText(),password_field.getText());
+            boolean attempt = login_attempt.verifyLogin(username_field.getText(),password_field.getText());
+            if (attempt){
+                Window menu = new Window("src/main/resources/com/pharmasoft/Menus/user-menu.fxml",false,true);
+                menu.Open();
+                username_field.getScene().getWindow().hide();
+
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

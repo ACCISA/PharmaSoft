@@ -14,7 +14,8 @@ import java.io.IOException;
 public class Start extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Window start = new Window("src/main/resources/com/pharmasoft/Forms/login-form.fxml", false);
+//        Window background = new Window("src/main/resources/com/pharmasoft/background.fxml",false,true);
+        Window start = new Window("src/main/resources/com/pharmasoft/Forms/login-form.fxml", false, true);
         start.Open();
 //        Api a = new Api();
 //        a.verifyLogin("3","4");

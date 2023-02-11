@@ -31,6 +31,7 @@ public class Window {
     private double y = 0;
     private Stage stage;
     private boolean isDraggable;
+    private boolean isFullscreen;
     private ArrayList<Stage> allStage;
     private String style = "src/main/resources/com/pharmasoft/Styles/styles.css";
 
@@ -42,9 +43,10 @@ public class Window {
         CreateWindow();
     }
 
-    public Window(String fxml,boolean isDraggable){
+    public Window(String fxml,boolean isDraggable, boolean isFullscreen){
         this.fxml = fxml;
         this.isDraggable = isDraggable;
+        this.isFullscreen = isFullscreen;
         CreateWindow();
     }
 
@@ -78,7 +80,9 @@ public class Window {
         int fxmlLength = fxml.length();
         int absLength = abs.length();
         String sourcePath = abs.substring(0,absLength-fxmlLength);
-
+        if (this.isFullscreen){
+            stage.setMaximized(true);
+        }
         stage.getIcons().add(new Image(sourcePath+"src/main/resources/com/pharmasoft/Images/pharma_logo.jpg"));
         try{
 

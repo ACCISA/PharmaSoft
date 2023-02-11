@@ -1,4 +1,4 @@
-#backgroundPane{
-    -fx-background-image: url("Images/background_pane.jpg");
+#backgroundBox{
+    -fx-background-image: url("Images/background_pane2.jpg");
     -fx-background-size: cover;
 }
