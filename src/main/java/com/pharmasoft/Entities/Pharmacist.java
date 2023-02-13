@@ -6,4 +6,16 @@ public class Pharmacist extends Employee{
         super(first_name, last_name, employee_id);
     }
 
+    public Pharmacist(){
+
+    }
+
+    public boolean equals(Object obj){
+        if (obj == null) return false;
+        if (obj == this) return true;
+        if (getClass() == obj.getClass()) return true;
+        return false;
+    }
+
+
 }

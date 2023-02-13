@@ -6,7 +6,13 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.pharmasoft.Entities.Employee;
+import com.pharmasoft.Entities.Pharmacist;
 import com.pharmasoft.Entities.Session;
+import com.pharmasoft.Entities.Technician;
+import com.pharmasoft.Utils.CONFIG;
+import com.pharmasoft.Utils.ERROR;
+
 import org.json.JSONObject;
 
 
@@ -16,6 +22,35 @@ public class Api {
         byte[] out = byteData.getBytes(StandardCharsets.UTF_8);
         if (APICall("http://127.0.0.1:5000/login", out, true)) return true;
         return false;
+
+    }
+    public void addEmployee(String[] data, String token, Employee emp) throws Exception {
+        Employee e = new Employee();
+        Pharmacist p = new Pharmacist();
+        Technician t = new Technician();
+        String byteData;
+        if (emp.equals(e)){
+            System.out.println("[APP] Employee Information Sent to Server");
+            byteData = "{\"frst_name\":\""+data[0]+"\",\"last_name\":\""+data[1]+"\",\"employee_id\":\""+data[2]+"\"}";
+            byte[] out = byteData.getBytes(StandardCharsets.UTF_8);
+            if (APICall(CONFIG.URL,out,CONFIG.URL_ADD_EMPLOYEE)){
+                System.out.println("[APP] Employee Successfully Added");
+                return;
+            } else{
+                throw new Exception(ERROR.API_ERROR_POST);
+            }
+        }
+
+        if (emp.equals(p)){
+            System.out.println("[APP] Pharmacist Information Sent to Server");
+            return;
+        }
+
+        if (emp.equals(t)){
+            System.out.println("[APP] Employee Information Sent to Server");
+            return;
+        }
+
 
     }
     private boolean APICall(String urls, byte[] out,boolean login) throws IOException {
@@ -69,6 +104,48 @@ public class Api {
         }
         return false;
     }
+
+    private boolean APICall(String urls, byte[] out,String method) throws IOException {
+        URL url = new URL(urls+method);
+        URLConnection con = url.openConnection();
+        HttpURLConnection http = (HttpURLConnection) con;
+        http.setRequestMethod("POST");
+        http.setDoOutput(true);
+        int length = out.length;
+
+        http.setFixedLengthStreamingMode(length);
+        http.setRequestProperty("Content-Type","application/json; charset=UTF-8");
+
+        http.connect();
+        try(OutputStream os = http.getOutputStream()){
+            os.write(out);
+        }
+
+
+        try(InputStream is = http.getInputStream()){
+            BufferedReader in = new BufferedReader( new InputStreamReader(is));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            //print in String
+            System.out.println(response.toString());
+            //Read JSON response and print
+            JSONObject myResponse = new JSONObject(response.toString());
+            if (method.equals(CONFIG.URL_ADD_EMPLOYEE)){
+                String message = myResponse.getString("message");
+                if (message.equals("true")) return true;
+                return false;
+
+            }
+
+
+        }
+        return false;
+    }
+
     private String[] APICall(String apiLocation, String method, String[] args){
         String urlx = "http://127.0.0.1:5000/"+apiLocation;
 
