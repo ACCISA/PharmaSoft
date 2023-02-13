@@ -38,20 +38,6 @@ def public():
 def auth():
     return 'this is private'
 
-# @app.route('/login', methods=['POST'])
-# def login():
-#     data = request.get_json()
-#     if data['password'] == 'admin':
-#         session['logged_in'] = True
-#         token = jwt.encode({
-#             'user':data['username'],
-#             'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=60)
-#         },
-#         app.config['SECRET_KEY'])
-#         return jsonify({'token':token})
-#     else:
-#         return 'bad password'
-
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -69,7 +55,7 @@ def login():
         return jsonify({'message':'logged_in','token':token})
     return jsonify({'message':'invalid_login','token':'none'})
 
-@app.route('/add_employee')
+@app.route('/add_employee', methods=['POST'])
 @check_for_token
 def addEmployeeRoute():
     data = request.get_json()
@@ -83,6 +69,7 @@ def addEmployeeRoute():
         return jsonify({'message':'false'})
     return jsonify({'message':'true'})
 
+@app.route('/remove_employee')
 
 Initialize()
 
