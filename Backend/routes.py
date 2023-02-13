@@ -29,15 +29,6 @@ def index():
     else:
         return 'ur logged in'
 
-@app.route('/public')
-def public():
-    return 'dis public'
-
-@app.route('/auth')
-@check_for_token
-def auth():
-    return 'this is private'
-
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -70,7 +61,11 @@ def addEmployeeRoute():
     return jsonify({'message':'true'})
 
 @app.route('/remove_employee')
-
+@check_for_token
+def removeEmployeeRoute():
+    data = request.get_json()
+    employee_id = data['employee_id']
+    Employee.remove(employee_id)
 Initialize()
 
 if __name__ == '__main__':

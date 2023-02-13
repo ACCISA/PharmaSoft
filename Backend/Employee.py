@@ -11,8 +11,12 @@ class Employee:
         self.password = hashlib.sha256(password.encode()).hexdigest()
     
     def remove(employee_id):
-        print('removed')
-
+        conn = sqlite3.connect(url)
+        sql = 'DELETE FROM EMPLOYEE WHERE employee_id =?'
+        val = (employee_id,)
+        c = conn.cursor()
+        c.execute(sql, val)
+        print('[API] Deleted ' + employee_id + ' From Database')
     def verifyLogin(employee_id, password):
         sql = "SELECT password FROM EMPLOYEE WHERE employee_id=?"
         val = (employee_id,)

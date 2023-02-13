@@ -15,8 +15,8 @@ class Database:
             )
 
         ''')
-        # conn.execute('''''')
-
+        # conn.execute('''''')        
+        
 def Initialize():
     Database()
     print('[API] Database Initialized')
