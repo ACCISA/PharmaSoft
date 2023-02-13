@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class Window {
+public class Window {//
 
 
     private final int width = 300;

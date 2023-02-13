@@ -12,7 +12,7 @@ public class Session {
 
     public static Session cur_session;
 
-    public Session(String token){
+    public Session(String token){//
         this.token = token;
         cur_session = this;
     }
