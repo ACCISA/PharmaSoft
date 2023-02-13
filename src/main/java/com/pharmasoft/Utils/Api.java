@@ -12,6 +12,7 @@ import com.pharmasoft.Entities.Session;
 import com.pharmasoft.Entities.Technician;
 import com.pharmasoft.Utils.CONFIG;
 import com.pharmasoft.Utils.ERROR;
+import com.pharmasoft.Utils.Func;
 
 import org.json.JSONObject;
 
@@ -19,6 +20,7 @@ import org.json.JSONObject;
 public class Api {
     public boolean verifyLogin(String employee_id, String password) throws IOException {
         String byteData ="{\"employee_id\":\""+employee_id+"\",\"password\":\""+ password+"\"}";
+        // TODO use jsonify method from Func
         byte[] out = byteData.getBytes(StandardCharsets.UTF_8);
         if (APICall("http://127.0.0.1:5000/login", out, true)) return true;
         return false;
@@ -31,7 +33,7 @@ public class Api {
         String byteData;
         if (emp.equals(e)){
             System.out.println("[APP] Employee Information Sent to Server");
-            byteData = "{\"frst_name\":\""+data[0]+"\",\"last_name\":\""+data[1]+"\",\"employee_id\":\""+data[2]+"\",\"token\":\""+Session.cur_session.getToken()+"\"}";
+            byteData = "{\"frst_name\":\""+data[0]+"\",\"last_name\":\""+data[1]+"\",\"employee_id\":\""+data[2]+"\"}";
             byte[] out = byteData.getBytes(StandardCharsets.UTF_8);
             if (APICall(CONFIG.URL,out,CONFIG.URL_ADD_EMPLOYEE)){
                 System.out.println("[APP] Employee Successfully Added");
@@ -106,7 +108,7 @@ public class Api {
     }
 
     private boolean APICall(String urls, byte[] out,String method) throws IOException {
-        URL url = new URL(urls+method);
+        URL url = new URL(urls+method+"?token="+Session.cur_session.getToken());
         URLConnection con = url.openConnection();
         HttpURLConnection http = (HttpURLConnection) con;
         http.setRequestMethod("POST");

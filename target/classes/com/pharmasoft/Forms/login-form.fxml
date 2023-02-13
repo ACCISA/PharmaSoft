@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="300.0" style="-fx-background-color: #181823; -fx-border-radius: 15px; -fx-border-color: #537FE7; -fx-background-radius: 15px;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="backgroundBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="891.0" prefWidth="1255.0" stylesheets="@../Styles/background.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmasoft.Controllers.Forms.LoginForm">
    <children>
-      <JFXTextField layoutX="70.0" layoutY="115.0" prefHeight="48.0" prefWidth="173.0" promptText="Username" style="-fx-background-color: #C0EEF2; -fx-alignment: center;">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </JFXTextField>
-      <JFXPasswordField layoutX="70.0" layoutY="221.0" prefHeight="48.0" prefWidth="173.0" promptText="Password" style="-fx-background-color: #C0EEF2; -fx-alignment: center;">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </JFXPasswordField>
-      <Text fill="#c0eef2" layoutX="65.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PharmaSoft" wrappingWidth="183.771484375">
-         <font>
-            <Font name="System Bold" size="33.0" />
-         </font>
-      </Text>
-      <Text fill="#c0eef2" layoutX="125.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="63.771484375">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Text>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="300.0">
+         <children>
+            <AnchorPane fx:id="loginFormPane" prefHeight="350.0" prefWidth="300.0" style="-fx-background-color: #181823; -fx-border-color: #8c0388; -fx-background-radius: 15px; -fx-border-radius: 15px;" styleClass="backgroundMenu">
+               <children>
+                  <JFXTextField fx:id="username_field" layoutX="64.0" layoutY="139.0" prefHeight="48.0" prefWidth="173.0" promptText="Username" style="-fx-background-color: #C0EEF2; -fx-alignment: center;">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXPasswordField fx:id="password_field" layoutX="64.0" layoutY="236.0" prefHeight="48.0" prefWidth="173.0" promptText="Password" style="-fx-background-color: #C0EEF2; -fx-alignment: center;">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </JFXPasswordField>
+                  <Text fill="#c0eef2" layoutX="59.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PharmaSoft" wrappingWidth="183.771484375">
+                     <font>
+                        <Font name="System Bold" size="33.0" />
+                     </font>
+                  </Text>
+                  <JFXButton fx:id="closeBtn" layoutX="262.0" layoutY="14.0" onAction="#closeBtnAction" style="-fx-background-color: #C0EEF2;" text="X" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="userMenu" layoutX="-142.0" layoutY="-61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="566.0" styleClass="backgroundMenu" visible="false" />
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</VBox>
