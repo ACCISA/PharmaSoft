@@ -69,13 +69,19 @@ def login():
         return jsonify({'message':'logged_in','token':token})
     return jsonify({'message':'invalid_login','token':'none'})
 
-@app.route('/create_user')
-def createUserRoute():
-    return "true"
-
-@app.route('/add_user')
-def addUserRoute():
-    pass
+@app.route('/add_employee')
+@check_for_token
+def addEmployeeRoute():
+    data = request.get_json()
+    first_name = data['first_name']
+    last_name = data['last_name']
+    employee_id = data['employee_id']
+    password = data['password']
+    employee = Employee(first_name, last_name, employee_id,password)
+    status = employee.add()
+    if not status:
+        return jsonify({'message':'false'})
+    return jsonify({'message':'true'})
 
 
 Initialize()

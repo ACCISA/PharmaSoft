@@ -3,7 +3,7 @@ import sqlite3
 from config import url
 
 class Employee:
-    def __init__(self, first_name, last_name, employee_id, password):
+    def __init__(self, first_name: str, last_name: str, employee_id: str, password):
         self.conn = sqlite3.connect(url)
         self.first_name = first_name
         self.last_name = last_name
@@ -53,11 +53,12 @@ class Employee:
         except Exception as e:
             raise Exception("[API] Error adding employee to database, verify that the information passed is not null and of the correct type")
   
-    def add(self):
+    def add(self) -> bool:
         if Employee.verifyEmployeeID(self):
             return False 
         if Employee.store(self):
             print('[API] Employee added to database')
+            return True
 # e = Employee("2",'2','32','4')
 # e.add()
 
