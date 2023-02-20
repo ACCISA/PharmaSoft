@@ -73,6 +73,6 @@ public class LoginForm extends BaseController implements Initializable {
 
     public void testBtnAction(ActionEvent actionEvent) {
         Window a = Window.cur_window;
-        a.changeRoot("src/main/resources/com/pharmasoft/background.fxml");
+        a.changeRoot("src/main/resources/com/pharmasoft/Menus/wip-form.fxml");
     }
 }
