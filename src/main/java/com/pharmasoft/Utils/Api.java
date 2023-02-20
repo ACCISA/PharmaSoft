@@ -33,7 +33,7 @@ public class Api {
         String byteData;
         if (emp.equals(e)){
             System.out.println("[APP] Employee Information Sent to Server");
-            byteData = "{\"frst_name\":\""+data[0]+"\",\"last_name\":\""+data[1]+"\",\"employee_id\":\""+data[2]+"\"}";
+            byteData = "{\"frst_name\":\""+data[0]+"\",\"last_name\":\""+data[1]+"\",\"employee_id\":\""+data[2]+"\",\"password\":\""+data[3]+"\"}";
             byte[] out = byteData.getBytes(StandardCharsets.UTF_8);
             if (APICall(CONFIG.URL,out,CONFIG.URL_ADD_EMPLOYEE)){
                 System.out.println("[APP] Employee Successfully Added");

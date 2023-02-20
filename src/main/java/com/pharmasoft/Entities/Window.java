@@ -15,6 +15,7 @@ import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -34,7 +35,8 @@ public class Window {//
     private boolean isFullscreen;
     private ArrayList<Stage> allStage;
     private String style = "src/main/resources/com/pharmasoft/Styles/styles.css";
-
+    public static Window cur_window;
+    public Scene scene;
     public Window( String fxml, String style){
         this.style = style;
 
@@ -47,6 +49,9 @@ public class Window {//
         this.fxml = fxml;
         this.isDraggable = isDraggable;
         this.isFullscreen = isFullscreen;
+        if (isFullscreen){
+            Window.cur_window = this;
+        }
         CreateWindow();
     }
 
@@ -90,7 +95,7 @@ public class Window {//
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
             URL url = new File(fxml).toURI().toURL();
             Parent root = FXMLLoader.load(url);
-            Scene scene = new Scene(root,width,height);
+            scene = new Scene(root,width,height);
             scene.setFill(Color.TRANSPARENT);
 
             if (isDraggable){
@@ -116,8 +121,22 @@ public class Window {//
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public void changeRoot(String new_fxml){
 
+        URL fxmlLocation = getClass().getClassLoader().getResource(new_fxml);
+        FXMLLoader loader = new FXMLLoader(fxmlLocation);
+
+        try {
+            URL url = new File(new_fxml).toURI().toURL();
+            Parent root = FXMLLoader.load(url);
+            scene.setRoot(root);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void Open(){
@@ -139,10 +158,6 @@ public class Window {//
 
         backgroundPath = backgroundPath.replaceAll("\\\\","/");
         System.out.println("[APP] Background Set to " + backgroundPath.replaceAll("\\\\","/"));
-
-
-
-
     }
 
 

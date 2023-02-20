@@ -9,16 +9,18 @@ public class Employee {
     private String first_name;
     private String last_name;
     private String employee_id;
+    private String password;
     private boolean root_access;
 
     public Employee(){
 
     }
 
-    public Employee(String first_name, String last_name, String employee_id){
+    public Employee(String first_name, String last_name, String employee_id, String password){
         this.employee_id = employee_id;
         this.first_name = first_name;
         this.last_name = last_name;
+        this.password = password;
     }
 
     public Employee(String first_name, String last_name){
@@ -30,7 +32,7 @@ public class Employee {
         // store to db here
         System.out.println("[APP] Employee Created");
         Api sendToServer = new Api();
-        sendToServer.addEmployee(new String[]{first_name,last_name,employee_id},Session.cur_session.getToken(),this);
+        sendToServer.addEmployee(new String[]{first_name,last_name,employee_id,password},Session.cur_session.getToken(),this);
     }
 
     public static void RemoveEmployee(){

@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.pharmasoft.Entities.Window;
 import com.pharmasoft.Utils.Api;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -70,4 +71,8 @@ public class LoginForm extends BaseController implements Initializable {
         }
     }
 
+    public void testBtnAction(ActionEvent actionEvent) {
+        Window a = Window.cur_window;
+        a.changeRoot("src/main/resources/com/pharmasoft/background.fxml");
+    }
 }

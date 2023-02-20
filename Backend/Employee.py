@@ -17,6 +17,7 @@ class Employee:
         c = conn.cursor()
         c.execute(sql, val)
         print('[API] Deleted ' + employee_id + ' From Database')
+
     def verifyLogin(employee_id, password):
         sql = "SELECT password FROM EMPLOYEE WHERE employee_id=?"
         val = (employee_id,)

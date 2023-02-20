@@ -15,6 +15,19 @@ class Database:
             )
 
         ''')
+
+        conn.execute('''
+        
+            CREATE TABLE IF NOT EXISTS LOGS
+            ([log_id] INTEGER PRIMARY KEY,
+            [type] VARCHAR(50) NOT NULL,
+            [message] VARCHAR(150) NOT NULL,
+            [caller] VARCHAR(150) NOT NULL,
+            [time] DATETIME NOT NULL
+            )
+
+        ''')
+
         # conn.execute('''''')        
         
 def Initialize():

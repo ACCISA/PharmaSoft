@@ -30,6 +30,7 @@
                      </font>
                   </Text>
                   <JFXButton fx:id="closeBtn" layoutX="262.0" layoutY="14.0" onAction="#closeBtnAction" style="-fx-background-color: #C0EEF2;" text="X" />
+                  <JFXButton fx:id="testBtn" layoutX="64.0" layoutY="37.0" onAction="#testBtnAction" style="-fx-background-color: red;" text="TEST" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="userMenu" layoutX="-142.0" layoutY="-61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="507.0" prefWidth="566.0" styleClass="backgroundMenu" visible="false" />
